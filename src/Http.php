@@ -9,7 +9,7 @@ class Http
     /**
      * @param string $url
      */
-    public function url(string $url) : void
+    public function url(string $url): void
     {
         $this->url = $url;
     }
@@ -17,7 +17,7 @@ class Http
     /**
      * @return string
      */
-    public function getBody() : string
+    public function getBody(): string
     {
         return file_get_contents($this->url);
     }
@@ -25,7 +25,7 @@ class Http
     /**
      * @return bool|string
      */
-    public function getHeaders() : string
+    public function getHeaders(): string
     {
         $curl = curl_init();
 
@@ -44,7 +44,7 @@ class Http
      * @param array $arr
      * @return bool|string
      */
-    public function post(array $arr) : string
+    public function post(array $arr): string
     {
         $curl = curl_init();
 
