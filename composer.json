@@ -2,6 +2,7 @@
     "name": "firework-php/http",
     "description": "Firework framework dependency",
     "type": "library",
+    "minimum-stability": "stable",
     "authors": [
         {
             "name": "Ян",
