@@ -79,9 +79,9 @@ $headers = string or array of headers:
 ### removeCurlSettings()
 Remove curl settings of the request \
 Params: \
-$settings = array of settings:
+$settings = string array of settings:
 
-    [CURLOPT_POST, CURLOPT_HEADER]
+    [CURLOPT_POST, CURLOPT_HEADER] or CURLOPT_POST
 
 &nbsp;
 

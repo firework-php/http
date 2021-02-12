@@ -76,9 +76,9 @@ class Http
     }
 
     /**
-     * @param array $settings
+     * @param $settings
      */
-    public function removeCurlSettings(array $settings): void
+    public function removeCurlSettings($settings): void
     {
         if (gettype($settings) == "array") {
             for ($i = 0; $i <= count($settings); $i++) {
@@ -86,6 +86,12 @@ class Http
                     if ($item == $settings[$i]) {
                         unset($this->curlSettings[$key]);
                     }
+                }
+            }
+        } else {
+            foreach ($this->curlSettings as $key => $item) {
+                if ($item == $settings) {
+                    unset($this->curlSettings[$key]);
                 }
             }
         }
