@@ -96,3 +96,13 @@ $arr = array of request values:
 &nbsp;
 
     $http->post($arr);
+
+### isOk()
+Return boolean
+
+    $http->isOk();
+
+### getResponseCode()
+Return string of response code
+
+    $http->getResponceCode();
