@@ -46,13 +46,13 @@ $url = url of the request:
 ### setHeaders()
 Set headers of the request \
 Params: \
-$arr = array of headers: 
+$headers = string or array of headers: 
 
-    ["HeaderName:HeaderValue", "HeaderName2:HeaderValue2"]
+    ["HeaderName:HeaderValue", "HeaderName2:HeaderValue2"] or "HeaderName:HeaderValue"
 
 &nbsp;
 
-    $http->setHeaders($arr);
+    $http->setHeaders($headers);
 
 ### setCurlSettings()
 Set curl settings of the request \
@@ -64,6 +64,28 @@ $arr = array of settings:
 &nbsp;
     
     $http->setCurlSettings($arr);
+
+### removeHeaders()
+Remove headers of the request \
+Params: \
+$headers = string or array of headers:
+
+    ["HeaderName:HeaderValue", "HeaderName2:HeaderValue2"] or "HeaderName:HeaderValue"
+
+&nbsp;
+
+    $http->removeHeaders($headers);
+
+### removeCurlSettings()
+Remove curl settings of the request \
+Params: \
+$settings = array of settings:
+
+    [CURLOPT_POST, CURLOPT_HEADER]
+
+&nbsp;
+
+    $http->removeCurlSettings($settings);
 
 ### getHeaders()
 Return headers of the request
