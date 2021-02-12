@@ -5,13 +5,22 @@ namespace Http;
 class Http
 {
     private $url;
+    private $headers;
 
     /**
      * @param string $url
      */
-    public function url(string $url): void
+    public function setUrl(string $url): void
     {
         $this->url = $url;
+    }
+
+    /**
+     * @param array $headers
+     */
+    public function setHeaders(array $headers): void
+    {
+        $this->headers = $headers;
     }
 
     /**
@@ -33,6 +42,7 @@ class Http
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
         curl_setopt($curl,CURLOPT_NOBODY,true);
         curl_setopt($curl,CURLOPT_HEADER,true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
 
         $response = curl_exec($curl);
         curl_close($curl);
@@ -52,6 +62,7 @@ class Http
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($arr));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $this->headers);
 
         $response = curl_exec($curl);
         curl_close($curl);
