@@ -35,16 +35,35 @@
 ### setUrl()
 Set url of the request \
 Params: \
-$url = url of the request : "http://example.com/"
+$url = url of the request: 
+
+    "http://example.com/"
+
+&nbsp;
 
     $http->setUrl($url);
 
 ### setHeaders()
 Set headers of the request \
 Params: \
-$arr = array of headers : ["HeaderName:HeaderValue", "HeaderName2:HeaderValue2"]
+$arr = array of headers: 
+
+    ["HeaderName:HeaderValue", "HeaderName2:HeaderValue2"]
+
+&nbsp;
 
     $http->setHeaders($arr);
+
+### setCurlSettings()
+Set curl settings of the request \
+Params: \
+$arr = array of settings: 
+
+    [CURLOPT_URL => "http://example.com", CURLOPT_HEADER => false]
+
+&nbsp;
+    
+    $http->setCurlSettings($arr);
 
 ### getHeaders()
 Return headers of the request
@@ -59,6 +78,10 @@ Return body of the request
 ### post()
 Send post request to url \
 Params: \
-$arr = array of request values : ["name": "john", "age": 25]
+$arr = array of request values: 
+
+    ["name": "john", "age": 25]
+
+&nbsp;
 
     $http->post($arr);
