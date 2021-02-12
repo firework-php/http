@@ -65,17 +65,6 @@ $arr = array of settings:
     
     $http->setCurlSettings($arr);
 
-### removeHeaders()
-Remove headers of the request \
-Params: \
-$headers = string or array of headers:
-
-    ["HeaderName:HeaderValue", "HeaderName2:HeaderValue2"] or "HeaderName:HeaderValue"
-
-&nbsp;
-
-    $http->removeHeaders($headers);
-
 ### removeCurlSettings()
 Remove curl settings of the request \
 Params: \

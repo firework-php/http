@@ -5,7 +5,7 @@ namespace Http;
 class Http
 {
     private $url;
-    private $headers;
+    private $headers = [];
     private $curlSettings = [];
 
     /**
@@ -24,61 +24,47 @@ class Http
 
     /**
      * @param string $url
+     * @return $this
      */
-    public function setUrl(string $url): void
+    public function setUrl(string $url): Http
     {
         $this->url = $url;
         $this->curlSettings[CURLOPT_URL] = $this->url;
+
+        return $this;
     }
 
     /**
      * @param array $headers
+     * @return $this
      */
-    public function setHeaders($headers): void
+    public function setHeaders(array $headers): Http
     {
-        if (gettype($headers) == "string") {
-            array_push($this->headers, $headers);
-            $this->curlSettings = $this->headers;
-        } else if (gettype($headers) == "array") {
+        if (gettype($headers) == "array") {
             $this->headers = array_merge($this->headers, $headers);
             $this->curlSettings = $this->headers;
         }
+
+        return $this;
     }
 
-    /**
-     * @param $headers
-     */
-    public function removeHeaders($headers): void
-    {
-        if (gettype($headers) == "string") {
-            foreach ($this->headers as $key => $item) {
-                if ($item == $headers) {
-                    unset($this->headers[$key]);
-                }
-            }
-        } else if (gettype($headers) == "array") {
-            for ($i = 0; $i <= count($headers); $i++) {
-                foreach ($this->headers as $key => $item) {
-                    if ($item == $headers[$i]) {
-                        unset($this->headers[$key]);
-                    }
-                }
-            }
-        }
-    }
 
     /**
      * @param array $settings
+     * @return $this
      */
-    public function setCurlSettings(array $settings): void
+    public function setCurlSettings(array $settings): Http
     {
         $this->curlSettings = array_merge($this->curlSettings, $settings);
+
+        return $this;
     }
 
     /**
      * @param $settings
+     * @return $this
      */
-    public function removeCurlSettings($settings): void
+    public function removeCurlSettings($settings): Http
     {
         if (gettype($settings) == "array") {
             for ($i = 0; $i <= count($settings); $i++) {
@@ -94,6 +80,35 @@ class Http
                     unset($this->curlSettings[$key]);
                 }
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed|string
+     */
+    public function getResponseCode(): string
+    {
+        $curl = curl_init();
+
+        curl_setopt_array($curl, $this->curlSettings);
+
+        $response = curl_exec($curl);
+        $response = explode(' ', $response);
+
+        return $response[1];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOk(): bool
+    {
+        if ($this->getResponseCode() == "200") {
+            return true;
+        } else {
+            return false;
         }
     }
 
