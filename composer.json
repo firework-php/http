@@ -1,5 +1,5 @@
 {
-    "name": "firework/http",
+    "name": "firework-php/http",
     "description": "Firework framework dependency",
     "type": "library",
     "authors": [
