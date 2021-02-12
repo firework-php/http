@@ -1,0 +1,21 @@
+{
+    "name": "firework/http",
+    "description": "Firework framework dependency",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ян",
+            "email": "yandancheats@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Http\\": "src"
+        }
+    },
+    "require": {
+        "php": ">=7.4"
+    },
+    "license": "MIT"
+}
