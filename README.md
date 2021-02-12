@@ -12,12 +12,12 @@
 
     // Print headers of the request
     print_r(
-        $http->get_headers()
+        $http->getHeaders()
     );
 
     // Print body of the request
     print_r(
-        $http->get_body() 
+        $http->getBody() 
     );
 
     // Print response of the post request

@@ -6,17 +6,26 @@ class Http
 {
     private $url;
 
-    public function url(string $url)
+    /**
+     * @param string $url
+     */
+    public function url(string $url) : void
     {
         $this->url = $url;
     }
 
-    public function get_body()
+    /**
+     * @return string
+     */
+    public function getBody() : string
     {
         return file_get_contents($this->url);
     }
 
-    public function get_headers()
+    /**
+     * @return bool|string
+     */
+    public function getHeaders() : string
     {
         $curl = curl_init();
 
@@ -31,7 +40,11 @@ class Http
         return $response;
     }
 
-    public function post(array $arr)
+    /**
+     * @param array $arr
+     * @return bool|string
+     */
+    public function post(array $arr) : string
     {
         $curl = curl_init();
 
