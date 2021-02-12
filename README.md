@@ -5,7 +5,7 @@
     <?php
 
     use Http\Http; // Import main class
-    require __DIR__ . 'path-to-autoload // Import composer autoload 
+    require __DIR__ . 'path-to-autoload'; // Import composer autoload 
 
     $http = new Http; // Create new Http class
     $http->url("https://httpbin.org/post"); // Add HTTP url
