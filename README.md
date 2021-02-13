@@ -91,11 +91,22 @@ Send post request to url \
 Params: \
 $arr = array of request values: 
 
-    ["name": "john", "age": 25]
+    ["name" => "john", "age" => 25]
 
 &nbsp;
 
     $http->post($arr);
+
+### put()
+Send put request to url \
+Params: \
+$arr = array of request values:
+
+    ["name" => "john", "age" => 25]
+
+&nbsp;
+
+    $http->put($arr);
 
 ### isOk()
 Return boolean

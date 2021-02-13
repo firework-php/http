@@ -155,4 +155,25 @@ class Http
 
         return $response;
     }
+
+    /**
+     * @param array $arr
+     * @return string
+     */
+    public function put(array $arr): string
+    {
+        $curl = curl_init();
+
+        array_merge($this->curlSettings, [
+           CURLOPT_CUSTOMREQUEST => 'PUT',
+           CURLOPT_POSTFIELDS => http_build_query($arr),
+        ]);
+
+        curl_setopt_array($curl, $this->curlSettings);
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+        return $response;
+    }
 }
