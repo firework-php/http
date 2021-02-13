@@ -108,6 +108,17 @@ $arr = array of request values:
 
     $http->put($arr);
 
+### delete()
+Send delete request to url \
+Params: \
+$arr = array of request values:
+
+    ["name" => "john", "age" => 25]
+
+&nbsp;
+
+    $http->delete($arr);
+
 ### isOk()
 Return boolean
 
