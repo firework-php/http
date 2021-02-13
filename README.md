@@ -86,6 +86,17 @@ Return body of the request
 
     $http->getbody();
 
+### get()
+Send get request to url \
+Params: \
+$arr = array of request values:
+
+    ["name" => "john", "age" => 25]
+
+&nbsp;
+
+    $http->get($arr);
+
 ### post()
 Send post request to url \
 Params: \
@@ -118,6 +129,17 @@ $arr = array of request values:
 &nbsp;
 
     $http->delete($arr);
+
+### patch()
+Send patch request to url \
+Params: \
+$arr = array of request values:
+
+    ["name" => "john", "age" => 25]
+
+&nbsp;
+
+    $http->patch($arr);
 
 ### isOk()
 Return boolean

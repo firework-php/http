@@ -137,6 +137,27 @@ class Http
 
     /**
      * @param array $arr
+     * @return string
+     */
+    public function get(array $arr): string
+    {
+        $curl = curl_init();
+
+        array_merge($this->curlSettings, [
+            CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_POSTFIELDS => http_build_query($arr),
+        ]);
+
+        curl_setopt_array($curl, $this->curlSettings);
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+        return $response;
+    }
+
+    /**
+     * @param array $arr
      * @return bool|string
      */
     public function post(array $arr): string
@@ -187,6 +208,27 @@ class Http
 
         array_merge($this->curlSettings, [
             CURLOPT_CUSTOMREQUEST => 'DELETE',
+            CURLOPT_POSTFIELDS => http_build_query($arr),
+        ]);
+
+        curl_setopt_array($curl, $this->curlSettings);
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+        return $response;
+    }
+
+    /**
+     * @param array $arr
+     * @return string
+     */
+    public function patch(array $arr): string
+    {
+        $curl = curl_init();
+
+        array_merge($this->curlSettings, [
+            CURLOPT_CUSTOMREQUEST => "PATCH",
             CURLOPT_POSTFIELDS => http_build_query($arr),
         ]);
 
