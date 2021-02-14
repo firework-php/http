@@ -1,7 +1,6 @@
 <?php
 
 namespace Http;
-use Http\Client;
 
 class Response
 {
@@ -21,11 +20,11 @@ class Response
     /**
      * @return mixed|string
      */
-    public function getResponseCode(): string
+    public function getResponseCode(): array
     {
         $response = explode(' ', $this->response);
 
-        return $response[1];
+        return $response;
     }
 
     /**
@@ -46,5 +45,13 @@ class Response
     public function getBody(): string
     {
         return file_get_contents((new Client)->curlSettings[CURLOPT_URL]);
+    }
+
+    /**
+     * @return object
+     */
+    public function getHeaders(): object
+    {
+        return (new Client)->get([], true);
     }
 }

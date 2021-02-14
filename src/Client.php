@@ -2,12 +2,10 @@
 
 namespace Http;
 
-use Http\Response;
-
 class Client
 {
-    public $headers = [];
-    public $curlSettings = [];
+    public array $headers = [];
+    public array $curlSettings = [];
 
     /**
      * Http constructor.
@@ -22,24 +20,27 @@ class Client
     }
 
     /**
-     * @param string $customRequest
-     * @param array $arr
-     * @return string
+     * @param string $method
+     * @param array $query
+     * @param bool $isNeedBody
+     * @return object
      */
-    public function curlRequest(string $customRequest, array $arr, bool $noBody): string
+    public function curlRequest(string $method, array $query, bool $isNeedBody): object
     {
         $curl = curl_init();
 
         $this->curlSettings = array_merge($this->curlSettings, [
-           CURLOPT_CUSTOMREQUEST => $customRequest,
-           CURLOPT_POSTFIELDS => http_build_query($arr),
-           CURLOPT_NOBODY => $noBody,
+           CURLOPT_CUSTOMREQUEST => $method,
+           CURLOPT_POSTFIELDS => http_build_query($query),
+           CURLOPT_NOBODY => $isNeedBody,
         ]);
 
         curl_setopt_array($curl, $this->curlSettings);
 
         $response = curl_exec($curl);
         curl_close($curl);
+
+        print_r($response);
 
         return (new Response)->setResponse($response);
     }
@@ -82,31 +83,23 @@ class Client
     }
 
     /**
-     * @return void
+     * @param array $settingsArr
+     * @param bool $noBody
+     * @return object
      */
-    public function getHeaders(): void
+    public function get(array $settingsArr, bool $noBody): object
     {
-        $this->curlRequest("GET", [], true);
+        return $this->curlRequest("GET", $settingsArr, $noBody);
     }
 
     /**
      * @param array $settingsArr
      * @param bool $noBody
-     * @return void
+     * @return object
      */
-    public function get(array $settingsArr, bool $noBody): void
+    public function post(array $settingsArr, bool $noBody): object
     {
-        $this->curlRequest("GET", $settingsArr, $noBody);
-    }
-
-    /**
-     * @param array $settingsArr
-     * @param bool $noBody
-     * @return void
-     */
-    public function post(array $settingsArr, bool $noBody): void
-    {
-        $this->curlRequest("POST", $settingsArr, $noBody);
+        return $this->curlRequest("POST", $settingsArr, $noBody);
     }
 
     /**
